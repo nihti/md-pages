@@ -1,19 +1,19 @@
-## Tervetuloa
+# Tervetuloa
 
 Palvelinten hallinnan kurssimateriaalit: <https://terokarvinen.com/2021/configuration-management-systems-palvelinten-hallinta-ict4tn022-spring-2021/>
 
-### Ensimmäinen tehtävä
+## Ensimmäinen tehtävä
 
 Ensimmäinen kurssitehtävä oli luoda tämä sivusto ja opiskella Linuxin kansiorakenne ja tavallisimpia komentoja. Lisäksi tuli asentaa master-minion -arkkitehtuuri. Seurataan ohjeita: <http://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/>
 
-#### Masterin asennus
+### Masterin asennus
     sudo apt-get update
     sudo apt-get -y install salt-master
     hostname -I 
     
 Hostname kertoo että Masterin IP on 10.0.2.15
 
-#### Minionin asennus
+### Minionin asennus
     sudo apt-get update
     sudo apt-get install salt-minion
     
@@ -58,7 +58,7 @@ Varmistetaan että salt toimii. Kokeillaan jo toiminutta komentoa.
 
 Siirrytään seuraaviin vaiheisiin.
 
-#### Ohjeita Minioneille Masterilta
+### Ohjeita Minioneille Masterilta
 
 Seurataan toista ohjetta: <http://terokarvinen.com/2018/salt-states-i-want-my-computers-like-this/>
 Luodaan kansio Masterin ohjeita varten
@@ -110,8 +110,44 @@ Jälleen oli kaksoispiste unohtunut tiedostosta vaikkei se tällä kertaa sitä 
 
 ![kuva](https://user-images.githubusercontent.com/22195470/114596723-a01ab900-9c98-11eb-8650-564493c71f29.png)
 
+Lopetetaan tehtävä.
 
 
+## Toinen tehtävä
 
+Tutustutaan configuration management systemiin ja package-file-service patterniin. Asennetaan ohjelmisto, korvataan konfiguraatiotiedosto ja käynnistetään daemon uudestaan uudella konfiguraatiolla. Varsinaisia ohjeita ssh:n asentamiseen kurssimateriaaleista ei löydy eli ilmeisesti kyseessä on itsestäänselvyys. Etsitään kuitenkin varmuudeksi joku lähde ssh-serverin asentamiseksi: <https://www.cyberciti.biz/faq/ubuntu-linux-install-openssh-server/>
+
+Aloitetaan komennoilla:
+        
+    sudo apt-get update
+    sudo apt-get install openssh-server
+
+VirtualBoxin virtuaalikoneet ovat vaikuttaneet epävakailta ja jälleen uuden ohjelmiston asentaminen vaikuttaa kaataneen koneen. Kone ei ollut kaatunut mutta asentaminen vei aikaa ja kirjasi minut ulos Ubuntusta. 
+
+Jatketaan:
+
+    sudo systemctl enable ssh
+    sudo systemctl start ssh
+    
+Luodaan SSH state:
+
+    openssh-server:
+      pkg.installed
+    /etc/ssh/sshd_config:
+      file.managed:
+        - source: salt://sshd_config
+      sshd:
+        service.running:
+          - watch:
+            - file: /etc/ssh/sshd_config
+
+    
+    
+
+        
+ 
+        
+
+        
 
 
