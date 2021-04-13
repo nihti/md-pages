@@ -60,7 +60,7 @@ Siirrytään seuraaviin vaiheisiin.
 
 #### Ohjeita Minioneille Masterilta
 
-Seurataan toista ohjetta: <terokarvinen.com/2018/salt-states-i-want-my-computers-like-this/>
+Seurataan toista ohjetta: <http://terokarvinen.com/2018/salt-states-i-want-my-computers-like-this/>
 Luodaan kansio Masterin ohjeita varten
 
     sudo mkdir -p /srv/salt/
