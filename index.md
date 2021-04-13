@@ -10,11 +10,13 @@ Ensimmäinen kurssitehtävä oli luoda tämä sivusto ja opiskella Linuxin kansi
     sudo apt-get update
     sudo apt-get -y install salt-master
     hostname -I 
+    
 Hostname kertoo että Masterin IP on 10.0.2.15
 
 #### Minionin asennus
     sudo apt-get update
     sudo apt-get install salt-minion
+    
 Koska en käyttänyt -y flagia, joudun hyväksymään "Do you want to continue?" - y
     
     sudoedit /etc/salt/minion
@@ -43,6 +45,7 @@ Kokeillaan Minionin komentamista:
 Kokeillaan muita komentoja ohjeissa, cmd.run 'hostname -I' ja grains.items komennot toimivat, mutta 
 
     sudo salt '*' pkg.install httpie
+    
 kaataa virtuaalikoneen. Virtuaalikone vaikutti jo aiemmin kaatuvan muutaman kerran, joten komennolla ei ole välttämättä yhteyttä tähän. Kokeillaan uudestaan ja saadaan tulos:
 
 ![kuva](https://user-images.githubusercontent.com/22195470/114587541-7197e080-9c8e-11eb-9013-26b26a01b1c5.png)
@@ -72,6 +75,7 @@ Polku salt://helloworld.txt tarkoittaa Masterin /srv/salt kansiota.
 Lisätään tiedosto helloworld.txt
 
     sudoedit /srv/salt/helloworld.txt
+    
 Ja sinne rivit
 
     Hello World!
@@ -89,6 +93,7 @@ Herjaa että rivillä 2 ongelma. Huomataan että rivillä 1 unohtunut kaksoispis
 Toimii. Kokeillaan seuraavaksi lisätä automaattisesti puolentunnin välein ajettava top.sls:
 
     sudoedit /srv/salt/top.sls
+    
 Lisätään rivit:
     
     base:
