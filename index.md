@@ -1,10 +1,10 @@
 ## Tervetuloa
 
-Palvelinten hallinnan kurssimateriaalit: https://terokarvinen.com/2021/configuration-management-systems-palvelinten-hallinta-ict4tn022-spring-2021/ 
+Palvelinten hallinnan kurssimateriaalit: <https://terokarvinen.com/2021/configuration-management-systems-palvelinten-hallinta-ict4tn022-spring-2021/>
 
 ### Ensimmäinen tehtävä
 
-Ensimmäinen kurssitehtävä oli luoda tämä sivusto ja opiskella Linuxin kansiorakenne ja tavallisimpia komentoja. Lisäksi tuli asentaa master-minion -arkkitehtuuri. Seurataan ohjeita: http://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/ 
+Ensimmäinen kurssitehtävä oli luoda tämä sivusto ja opiskella Linuxin kansiorakenne ja tavallisimpia komentoja. Lisäksi tuli asentaa master-minion -arkkitehtuuri. Seurataan ohjeita: <http://terokarvinen.com/2018/salt-quickstart-salt-stack-master-and-slave-on-ubuntu-linux/>
 
 #### Masterin asennus
     sudo apt-get update
@@ -43,16 +43,21 @@ Kokeillaan Minionin komentamista:
 Kokeillaan muita komentoja ohjeissa, cmd.run 'hostname -I' ja grains.items komennot toimivat, mutta 
 
     sudo salt '*' pkg.install httpie
-kaataa virtuaalikoneen. Virtuaalikone vaikutti jo aiemmin kaatuvan muutaman kerran, joten komennolla ei ole välttämättä yhteyttä tähän. Kokeillaan uudestaan ja saadaan tulos: 
+kaataa virtuaalikoneen. Virtuaalikone vaikutti jo aiemmin kaatuvan muutaman kerran, joten komennolla ei ole välttämättä yhteyttä tähän. Kokeillaan uudestaan ja saadaan tulos:
+
 ![kuva](https://user-images.githubusercontent.com/22195470/114587541-7197e080-9c8e-11eb-9013-26b26a01b1c5.png)
+
 Varmistetaan että salt toimii. Kokeillaan jo toiminutta komentoa.
 
     sudo salt '*' cmd.run 'hostname -I' 
+    
 ![kuva](https://user-images.githubusercontent.com/22195470/114588283-2d591000-9c8f-11eb-97f8-ba8daa98b58b.png)
 
 Siirrytään seuraaviin vaiheisiin.
 
 #### Ohjeita Minioneille Masterilta
+
+Seurataan toista ohjetta: <terokarvinen.com/2018/salt-states-i-want-my-computers-like-this/>
 Luodaan kansio Masterin ohjeita varten
 
     sudo mkdir -p /srv/salt/
@@ -76,7 +81,9 @@ Yritetään ajaa tiedosto hello.sls:
     sudo salt '*' state.apply hello
     
 ![kuva](https://user-images.githubusercontent.com/22195470/114594451-ef131f00-9c95-11eb-9db2-b7d0bc9c8812.png)
+
 Herjaa että rivillä 2 ongelma. Huomataan että rivillä 1 unohtunut kaksoispiste rivin lopusta. Korjataan kaksoispiste ja ajetaan komento uudestaan:
+
 ![kuva](https://user-images.githubusercontent.com/22195470/114594628-21248100-9c96-11eb-9703-f5b8de48889f.png)
 
 Toimii. Kokeillaan seuraavaksi lisätä automaattisesti puolentunnin välein ajettava top.sls:
@@ -95,6 +102,7 @@ Kokeillaan ajaa tiedosto välittömästi:
 ![kuva](https://user-images.githubusercontent.com/22195470/114594983-8aa48f80-9c96-11eb-93c8-6e9a2040b04b.png)
 
 Jälleen oli kaksoispiste unohtunut tiedostosta vaikkei se tällä kertaa sitä harjannutkaan, nyt toiselta riviltä. Lisätään kaksoispiste ja kokeillaan uudestaan:
+
 ![kuva](https://user-images.githubusercontent.com/22195470/114596723-a01ab900-9c98-11eb-8650-564493c71f29.png)
 
 
