@@ -141,7 +141,20 @@ Luodaan SSH state:
           - watch:
             - file: /etc/ssh/sshd_config
 
-    
+
+## Apachen asennus tunnilla
+
+sudo apt-get -y install apache2
+sudo a2enmod userdir
+sudo systemctl restart apache2
+cd /home/vagrant/
+mkdir public_html
+cd public_html/
+nano index.html
+curl localhost
+curl '
+http://localhost/~vagrant
+'
     
 
         
