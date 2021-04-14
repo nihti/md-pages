@@ -156,8 +156,19 @@ curl '
 http://localhost/~vagrant
 '
     
-
+$ find -printf '%T+ %p\n'|sort|tail -5
         
+/etc/apache2/mods-available/userdir.conf
+
+'a2enmod userdir':
+  
+cmd.run
+:
+    - creates: /etc/apache2/mods-enabled/userdir.load
+
+## Manuaali
+
+sudo salt-call --local sys.state_doc
  
         
 
