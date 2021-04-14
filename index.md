@@ -170,8 +170,44 @@ cmd.run
 
 sudo salt-call --local sys.state_doc
  
-        
+## PostgreSQL
 
-        
+Esimerkit PostgreSQL löytyvät Teron kotisivuilta: <http://terokarvinen.com/2016/03/03/install-postgresql-on-ubuntu-new-user-and-database-in-3-commands/index.html?fromSearch=>
+SQL: <http://terokarvinen.com/2016/postgresql-install-and-one-table-database-sql-crud-tutorial-for-ubuntu/index.html?fromSearch=>
 
+    sudo apt-get install ufw
+    sudo ufw allow 22/tcp
+    sudo ufw enable
+
+    sudo apt-get install postgresql
+    sudo -u postgres whoami 
+        postgres
+    sudo -u postgres createuser nihti
+    
+Kun rooli ja käyttäjä (user ja role tarkoitaa samaa!) sama ei tarvita salasanoja. 
+    
+### Automatisointi
+
+    cd /srv/salt
+    mkdir postgre
+    sudoedit init.sls
+    
+    postgresql:
+      pkg.installed
+      
+kaksi komentoa voi ajaa puolipilkulla
+
+    'createuser nihti; createdb nihti':
+      cmd.run:
+        - runas: postgres
+        - unless: 'psql -c "\\du"|grep "^ nihti "'
+      
+    sudo salt-call --local state.apply postgre
+
+psql komennolla pääsee sisään tietokantaan
+    
+    psql
+    
+    sudo -u postgres psql -c '\du'|grep nihti
+    
 
